@@ -1,0 +1,40 @@
+<div class="card mt-2">
+  <div class="card-header">
+    <strong>Cadastro WebRequest</strong>
+  </div>
+  <div class="card-body">
+    <div class="col-md-8 user-container">
+      <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="data">Data:</label>
+          <input type="datetime-local" formControlName="data" name="data" step="0.001" class="form-control" id="data">
+        </div>
+
+        <div class="form-group">
+          <label for="ip">Ip:</label>
+          <input type="text" formControlName="ip" maxlength="15" name="ip" class="form-control" id="ip">
+        </div>
+
+        <div class="form-group">
+          <label for="request">Request:</label>
+          <input type="text" formControlName="request" maxlength="255" name="request" class="form-control" id="request">
+        </div>
+
+        <div class="form-group">
+          <label for="status">Status:</label>
+          <input type="number" formControlName="status" min="100" max="599" name="status" class="form-control"
+            id="status">
+        </div>
+
+        <div class="form-group">
+          <label for="userAgent">User Agent:</label>
+          <input type="text" formControlName="userAgent" maxlength="255" name="userAgent" class="form-control"
+            id="userAgent">
+        </div>
+
+        <button class="btn btn-danger" (click)="cancelOperation()">Cancelar</button>
+        <button class="btn btn-success float-right" [disabled]="!addForm.valid">Salvar</button>
+      </form>
+    </div>
+  </div>
+</div>

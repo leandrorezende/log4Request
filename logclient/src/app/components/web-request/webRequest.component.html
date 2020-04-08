@@ -1,0 +1,76 @@
+<div class="card mt-2">
+  <div class="card-header">
+    Painel de busca
+  </div>
+  <div class="card-body">
+    <div class="col-md-10 user-container">
+      <form class="form-inline" [formGroup]="searchForm" (ngSubmit)="filterWebRequest()">
+        <div class="form-group col-xs-4 col-md-3">
+          <label for="ip" class="control-label">Ip</label>
+          <input type="text" formControlName="ip" maxlength="15" name="ip" class="form-control" id="ip">
+        </div>
+
+        <div class="form-group col-xs-4 col-md-3">
+          <label for="initialDate" class="control-label">Data inicial</label>
+          <input type="date" formControlName="initialDate" name="initialDate" class="form-control" id="initialDate">
+        </div>
+
+        <div class="form-group col-xs-4 col-md-3">
+          <label for="finalDate" class="control-label">Data final</label>
+          <input type="date" formControlName="finalDate" name="finalDate" class="form-control" id="finalDate">
+        </div>
+
+        <button class="btn btn-primary ml-3 mt-4">Buscar</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="card mt-2">
+  <div class="card-header">
+    <h2 class="mt-2 mb-2" style="display:inline-block;">WebRequest Log</h2>
+    <button class="btn btn-success mt-2 mb-3 float-right" style="width:100px;"
+      (click)="addWebRequest()">Adicionar</button>
+    <button class="btn btn-success mt-2 mr-2 mb-3 float-right" style="width:150px;" (click)="uploadBatch()">Upload
+      Arquivo
+    </button>
+  </div>
+  <div class="card-body">
+    <table class="table table-striped">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Data</th>
+          <th scope="col">Ip</th>
+          <th scope="col">Request</th>
+          <th scope="col">Status</th>
+          <th scope="col">Agregação</th>
+          <th class="text-center" scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let webRequest of state.webRequests">
+          <td width="20%">{{ webRequest.data }}</td>
+          <td width="10%">{{ webRequest.ip }}</td>
+          <td width="13%">{{ webRequest.request }}</td>
+          <td class="text-right" width="7%">{{ webRequest.status }}</td>
+          <td>{{ webRequest.userAgent }}</td>
+          <td class="text-center" width="20%">
+            <button class=" btn btn-warning mr-2" (click)="editWebRequest(webRequest)" style="margin-left: 20px;">
+              Editar</button>
+            <button class="btn btn-danger" (click)="deleteWebRequest(webRequest)">
+              Apagar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <nav>
+      <ul class="pagination justify-content-center">
+        <li [ngClass]="state.currentPage === page ? 'page-item active' : 'page-item'" *ngFor="let page of state.pages">
+          <a *ngIf="page > (state.currentPage - 3) && page < (state.currentPage + 3)" class="page-link"
+            (click)="hadlePageChange(page)">{{ page + 1 }}</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

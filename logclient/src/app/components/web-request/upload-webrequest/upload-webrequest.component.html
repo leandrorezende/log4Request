@@ -1,0 +1,19 @@
+<div class="card mt-2">
+  <div class="card-header">
+    <strong>Inserir em Lote</strong>
+  </div>
+  <div class="card-body">
+    <div class="col-md-5 user-container">
+      <h4>Escolha o arquivo</h4>
+      <form [formGroup]="uploadBatchForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <input type="file" (change)="fileChange($event)" formControlName="file" name="file" id="file">
+        </div>
+        <div class="form-group">
+          <button class="btn btn-danger mr-2" (click)="cancelOperation()">Voltar</button>
+          <button class="btn btn-primary" [disabled]="!uploadBatchForm.valid">Enviar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
