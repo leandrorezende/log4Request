@@ -25,14 +25,14 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import br.com.fortbit.logserver.domain.WebRequestLogs;
 import br.com.fortbit.logserver.dto.WebRequestLogsDTO;
 import br.com.fortbit.logserver.repositories.filters.WebRequestLogsFilter;
-import br.com.fortbit.logserver.services.WebRequestLoggService;
+import br.com.fortbit.logserver.services.WebRequestLogService;
 
 @RestController
 @RequestMapping(value = "/webRequest")
 public class WebRequestLogResource {
 	
 	@Autowired
-	private WebRequestLoggService service;
+	private WebRequestLogService service;
 	
 	@CrossOrigin
 	@GetMapping
@@ -44,7 +44,7 @@ public class WebRequestLogResource {
 
 	@CrossOrigin
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<WebRequestLogs> update(@PathVariable Integer id) {
+	public ResponseEntity<WebRequestLogs> find(@PathVariable Integer id) {
 		WebRequestLogs obj = service.find(id);
 		return ResponseEntity.ok().body(obj);
 	}

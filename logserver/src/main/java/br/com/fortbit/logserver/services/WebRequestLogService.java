@@ -27,7 +27,7 @@ import br.com.fortbit.logserver.services.exceptions.DataIntegrityException;
 import br.com.fortbit.logserver.services.exceptions.ObjectNotFoundException;
 
 @Service
-public class WebRequestLoggService {
+public class WebRequestLogService {
 	private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS");
 	
 	@Autowired

@@ -33,7 +33,7 @@ export class EditWebRequestComponent implements OnInit {
     this._webRequestService.getWebRequestById(+userId)
       .subscribe(data => {
         this.editForm.setValue(data);
-      });
+      }, err => console.log(err));
   }
 
   onSubmit() {
